@@ -113,10 +113,52 @@ continueBtn.addEventListener("click", () => {
 });
 
 const firebaseConfig = {
-  apiKey: "xxxx",
-  authDomain: "seu-projeto.firebaseapp.com",
-  projectId: "seu-projeto",
-  storageBucket: "seu-projeto.appspot.com",
-  messagingSenderId: "xxxx",
-  appId: "xxxx"
+  apiKey: "AIzaSyAVA8qHv3GaZm1Hjg5-1o-i6K4NKc8Ken8",
+  authDomain: "meu-portfolio-67950.firebaseapp.com",
+  projectId: "meu-portfolio-67950",
+  storageBucket: "meu-portfolio-67950.firebasestorage.app",
+  messagingSenderId: "303938424529",
+  appId: "1:303938424529:web:c8a53db54d4349f7fdfff0",
+  measurementId: "G-DLY2187FEN"
 };
+
+// Inicializa Firebase
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+continueBtn.addEventListener("click", () => {
+  errorMessage.innerText = "";
+
+  let errors = [];
+
+  if (!selectedOptions.role) {
+    errors.push("Escolha se você é visitante ou recrutador.");
+  }
+
+  if (!selectedOptions.source) {
+    errors.push("Informe como você chegou até aqui.");
+  }
+
+  if (errors.length > 0) {
+    errorMessage.innerText = errors.join(" ");
+  } else {
+    // Salvar no Firestore
+    db.collection("visitas").add({
+      role: selectedOptions.role,
+      source: selectedOptions.source,
+      empresaExtra: selectedOptions.empresaExtra || "",
+      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    })
+    .then(() => {
+      console.log("Dados salvos com sucesso!", selectedOptions);
+      
+      // Redireciona para a página principal do portfólio
+      window.location.href = "inicial.html";  // ajuste o nome da página aqui
+      
+    })
+    .catch((error) => {
+      console.error("Erro ao salvar dados: ", error);
+      errorMessage.innerText = "Erro ao salvar os dados. Tente novamente.";
+    });
+  }
+});

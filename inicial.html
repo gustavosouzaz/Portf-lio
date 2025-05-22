@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfolio - Página Inicial</title>
+  <link rel="stylesheet" href="styleInicial.css" />
+</head>
+<body>
+  <nav>
+    <a href="#home-section">Home</a>
+    <a href="#sobre-section">Sobre</a>
+    <a href="#contato-section">Contato</a>
+  </nav>
+
+  <main>
+    <section id="home-section">
+      <h2>Bem-vindo ao meu Portfólio</h2>
+      <p>Olá! Eu sou o Gustavo, desenvolvedor e entusiasta de tecnologia. Aqui você pode conhecer meus projetos, saber um pouco mais sobre mim e entrar em contato.</p>
+    </section>
+
+    <section id="sobre-section">
+      <h2>Sobre Mim</h2>
+      <p>Sou estudante de Análise de Sistemas, com paixão por desenvolvimento web e boas práticas de código. Adoro aprender novas tecnologias, trabalhar com JavaScript, Node.js, e construir aplicações modernas e seguras.</p>
+    </section>
+
+    <section id="contato-section">
+      <h2>Contato</h2>
+      <form id="contact-form">
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" name="nome" placeholder="Seu nome" required />
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="seuemail@exemplo.com" required />
+
+        <label for="mensagem">Mensagem</label>
+        <textarea id="mensagem" name="mensagem" rows="5" placeholder="Sua mensagem" required></textarea>
+
+        <button type="submit">Enviar</button>
+      </form>
+    </section>
+  </main>
+
+  <script>
+    // Simula envio do formulário
+    const form = document.getElementById('contact-form');
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      alert('Mensagem enviada! Obrigado pelo contato.');
+      form.reset();
+    });
+  </script>
+</body>
+</html>
