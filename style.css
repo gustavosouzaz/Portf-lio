@@ -129,3 +129,62 @@ p {
   margin-top: 1rem;
   font-size: 0.95rem;
 }
+/* Campo extra que aparece para recrutador - cores suaves e sem neon */
+#extra-info {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-top: 1.5rem;
+  background: rgba(50, 50, 50, 0.6); /* fundo escuro translúcido */
+  border-radius: 14px;
+  box-shadow: none; /* tira o glow */
+  transition: max-height 0.5s ease, opacity 0.5s ease, padding 0.5s ease;
+  font-family: 'Poppins', sans-serif;
+  color: #333030; /* texto claro */
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#extra-info.show {
+  max-height: 150px;
+  opacity: 1;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+#extra-info label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+  color: #ccc; /* cinza claro para o texto da pergunta */
+  text-shadow: none; /* remove sombra */
+}
+
+#extra-info input {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border-radius: 12px;
+  border: 1.5px solid #572e2e; /* borda cinza média */
+  background: rgba(30, 30, 30, 0.8); /* fundo escuro transparente */
+  color: #eee; /* texto claro */
+  font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: none; /* sem sombra/neon */
+  transition: border-color 0.3s ease;
+}
+
+#extra-info input::placeholder {
+  color: #bbb; /* placeholder cinza claro */
+}
+
+#extra-info input:focus {
+  outline: none;
+  border-color: #312b2b; /* borda levemente mais clara no foco */
+  box-shadow: none; /* sem glow */
+}
+#extra-info label {
+  color: #080808;
+}
