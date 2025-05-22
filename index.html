@@ -7,27 +7,31 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <script src="script.js"></script>
 
   <div class="container">
     <h1>Seja bem-vindo</h1>
     <p class="subtitle">Este é o meu portfólio</p>
 
     <p>Você é:</p>
-    <div class="options-group">
-      <button class="option-btn">Recrutador(a)</button>
-      <button class="option-btn">Visitante</button>
+    <div class="options-group" id="role-options">
+      <button class="option-btn" data-group="role">Recrutador(a)</button>
+      <button class="option-btn" data-group="role">Visitante</button>
     </div>
 
     <p>Como encontrou meu portfólio?</p>
-    <div class="options-group">
-      <button class="option-btn">GitHub</button>
-      <button class="option-btn">LinkedIn</button>
-      <button class="option-btn">Recomendação</button>
-      <button class="option-btn">Outro</button>
+    <div class="options-group" id="source-options">
+      <button class="option-btn" data-group="source">GitHub</button>
+      <button class="option-btn" data-group="source">LinkedIn</button>
+      <button class="option-btn" data-group="source">Recomendação</button>
+      <button class="option-btn" data-group="source">Outro</button>
     </div>
 
-    <button class="continue-btn">Continuar</button>
+    <button class="continue-btn" id="continueBtn">Continuar</button>
+
+    <!-- Mensagem de erro personalizada -->
+    <div id="error-message" style="margin-top: 1rem; color: #ff6ec7; font-weight: bold;"></div>
   </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
