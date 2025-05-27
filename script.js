@@ -44,7 +44,6 @@ buttons.forEach(button => {
     const group = button.getAttribute("data-group");
     const alreadySelected = button.classList.contains("selected");
 
-    // Desmarca todos do mesmo grupo
     document.querySelectorAll(`.option-btn[data-group="${group}"]`)
       .forEach(btn => btn.classList.remove("selected"));
 
@@ -54,13 +53,11 @@ buttons.forEach(button => {
 
       if (group === "role") {
         if (button.innerText.toLowerCase().includes("recrutador")) {
-          // Mostrar com animação
           extraInfo.style.maxHeight = "200px";
           extraInfo.style.opacity = "1";
           extraInfo.style.paddingTop = "15px";
           extraInfo.style.paddingBottom = "15px";
         } else {
-          // Esconder com animação
           extraInfo.style.maxHeight = "0";
           extraInfo.style.opacity = "0";
           extraInfo.style.paddingTop = "0";
@@ -88,29 +85,8 @@ empresaInfoInput.addEventListener("input", () => {
   selectedOptions.empresaExtra = empresaInfoInput.value.trim();
 });
 
-extraInfo.classList.add("show"); // para mostrar
-extraInfo.classList.remove("show"); // para esconder
-
-
-continueBtn.addEventListener("click", () => {
-  errorMessage.innerText = "";
-
-  let errors = [];
-
-  if (!selectedOptions.role) {
-    errors.push("Escolha se você é visitante ou recrutador.");
-  }
-
-  if (!selectedOptions.source) {
-    errors.push("Informe como você chegou até aqui.");
-  }
-
-  if (errors.length > 0) {
-    errorMessage.innerText = errors.join(" ");
-  } else {
-    console.log("Tudo certo!", selectedOptions);
-  }
-});
+extraInfo.classList.add("show");
+extraInfo.classList.remove("show");
 
 const firebaseConfig = {
   apiKey: "AIzaSyAVA8qHv3GaZm1Hjg5-1o-i6K4NKc8Ken8",
@@ -122,10 +98,10 @@ const firebaseConfig = {
   measurementId: "G-DLY2187FEN"
 };
 
-// Inicializa Firebase
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
+// ✅ Mantém apenas um listener no botão
 continueBtn.addEventListener("click", () => {
   errorMessage.innerText = "";
 
@@ -142,7 +118,6 @@ continueBtn.addEventListener("click", () => {
   if (errors.length > 0) {
     errorMessage.innerText = errors.join(" ");
   } else {
-    // Salvar no Firestore
     db.collection("visitas").add({
       role: selectedOptions.role,
       source: selectedOptions.source,
@@ -151,10 +126,10 @@ continueBtn.addEventListener("click", () => {
     })
     .then(() => {
       console.log("Dados salvos com sucesso!", selectedOptions);
-      
-      // Redireciona para a página principal do portfólio
-      window.location.href = "inicial.html";  // ajuste o nome da página aqui
-      
+
+      // ✅ Redireciona após salvar com sucesso
+      window.location.href = "inicial.html"; 
+
     })
     .catch((error) => {
       console.error("Erro ao salvar dados: ", error);
